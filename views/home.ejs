@@ -1,0 +1,11 @@
+<%- include("partials/header") %>
+<h1>Welcome to <%= event.name %></h1>
+<p><%= event.description %></p>
+<% if (!user) { %>
+  <a href="/login">Login</a>
+  <a href="/register">Register</a>
+<% } else { %>
+  <p>Hello, <%= user.username %>!</p>
+  <a href="/event">Go to Event Page</a>
+  <form action="/logout" method="POST"><button>Logout</button></form>
+<% } %>

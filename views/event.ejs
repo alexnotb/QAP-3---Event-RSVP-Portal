@@ -1,0 +1,25 @@
+<%- include("partials/header") %>
+<h2>Event: <%= event.name %></h2>
+<p>Date: <%= event.date %></p>
+<p><%= event.description %></p>
+
+<% if (!hasRSVP) { %>
+  <form action="/rsvp" method="POST">
+    <button>RSVP Now</button>
+  </form>
+<% } else { %>
+  <p>You have already RSVP'd. See you there!</p>
+<% } %>
+
+<% if (allRSVPs && allRSVPs.length > 0) { %>
+  <h3>RSVP List</h3>
+  <ul>
+    <% allRSVPs.forEach(r => { %>
+      <li><%= r.username %> at <%= r.time %></li>
+    <% }) %>
+  </ul>
+<% } else if (allRSVPs) { %>
+  <p>No RSVPs yet.</p>
+<% } %>
+
+<form action="/logout" method="POST"><button>Logout</button></form>
